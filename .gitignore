@@ -1,0 +1,29 @@
+
+donkeycar/env/*
+donkeycar/data/*
+donkeycar/dist/*
+
+donkeycar/*.pyc
+donkeycar/.ipynb_checkpoints
+donkeycar/*.egg-info/
+donkeycar/.git.bfg-report
+.DS_Store
+donkeycar/lag_log.csv
+
+donkeycar/.cache
+donkeycar/site/*
+donkeycar/build
+
+#IDE
+donkeycar/.idea
+donkeycar/.spyproject
+donkeycar/.pytest_cache
+donkeycar/.coverage
+donkeycar/.vscode
+
+# codecov
+donkeycar/htmlcov/
+
+# PyTorch
+donkeycar/lightning_logs
+donkeycar/tb_logs
