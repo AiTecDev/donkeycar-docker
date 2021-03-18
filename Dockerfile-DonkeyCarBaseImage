@@ -1,4 +1,4 @@
-FROM nvcr.io/nvidia/deepstream-l4t:5.1-21.02-base
+FROM nvcr.io/nvidia/l4t-base:r32.5.0
 
 #Prevent Docker-Engine restart during apt-get upgrade
 #RUN echo '* libraries/restart-without-asking boolean true' | sudo debconf-set-selections

@@ -1,4 +1,4 @@
-From zamy/donkeycarbaseimage-l4t5.1-21.02:01 
+From aitecmz/donkeycarbaseimage-v01 
 
 # Copy the DonkeyCar configuration directory mycar to /var/local/donkey
 RUN mkdir /usr/src/mycar
