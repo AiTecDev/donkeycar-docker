@@ -1,0 +1,23 @@
+version: '3.4'
+services:
+    donkey:
+        image: aitecmz/donkeycar-v02
+        build:
+            context: .
+            dockerfile: Dockerfile
+            network: host
+        privileged: true
+        ipc: host
+        network_mode: "host"
+        stdin_open: true
+        devices:
+            - /dev/video0:/dev/video0
+        tty: true
+        volumes:
+            - /tmp/.X11-unix:/tmp/.X11-unix:rw
+            - /tmp/camsock:/tmp/camsock:rw
+            - /tmp/argus_socket:/tmp/argus_socket:rw
+            - /tmp/nvscsock:/tmp/nvscsock:rw
+        environment:
+            TERM: xterm-256color
+            DISPLAY: $DISPLAY
