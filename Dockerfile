@@ -1,10 +1,4 @@
-From aitecmz/donkeycarbaseimage-v01 
-
-# Copy the DonkeyCar configuration directory mycar to /var/local/donkey
-RUN mkdir /usr/src/mycar
-COPY ./mycar/ /usr/src/mycar
-RUN chmod -R 600 /usr/src/mycar
-RUN ls -la /usr/src/mycar
+FROM aitecmz/donkeycarbaseimage-v01 
 
 # Install DonkeyCar software
 #RUN mkdir /var/local/projects
@@ -17,4 +11,9 @@ RUN export DISPLAY=:0
 
 WORKDIR /var/local/projects/donkycar
 
-CMD ["python3", "/usr/src/mycar/manage.py", "drive"]
+#joystick need NOT to be sticky and in "myconfig.py" the variable USE_JOYSTICK_AS_DEFAULT set to False
+#or it is commented out 
+#CMD ["python3", "/home/zamy/mycar/manage.py", "drive", "--js"]
+
+#joystick need to be sticky and in "myconfig.py" the variable USE_JOYSTICK_AS_DEFAULT set to True
+CMD ["python3", "/home/zamy/mycar/manage.py", "drive"]

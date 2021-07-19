@@ -8,7 +8,7 @@
 # The update operation will not touch this file.
 # """
 
-import os
+#import os
 # 
 # #PATHS
 # CAR_PATH = PACKAGE_PATH = os.path.dirname(os.path.realpath(__file__))
@@ -41,32 +41,32 @@ PCA9685_I2C_ADDR = 0x40     #steering I2C address, use i2cdetect to validate thi
 PCA9685_I2C_BUSNUM = 1   #None will auto detect, which is fine on the pi. But other platforms should specify the bus num.
 
 # #STEERING
-STEERING_CHANNEL = 1            #channel on the 9685 pwm board 0-15
-STEERING_LEFT_PWM = 600         #pwm value for full left steering
-STEERING_RIGHT_PWM = 200        #pwm value for full right steering
+STEERING_CHANNEL = 0            #channel on the 9685 pwm board 0-15
+STEERING_LEFT_PWM = 500         #pwm value for full left steering
+STEERING_RIGHT_PWM = 300        #pwm value for full right steering
 #
 # #THROTTLE
-THROTTLE_CHANNEL = 0           #channel on the 9685 pwm board 0-15
-THROTTLE_FORWARD_PWM = 600     #pwm value for max forward throttle
+THROTTLE_CHANNEL = 1           #channel on the 9685 pwm board 0-15
+THROTTLE_FORWARD_PWM = 500     #pwm value for max forward throttle
 THROTTLE_STOPPED_PWM = 350     #pwm value for no movement
-THROTTLE_REVERSE_PWM = 320     #pwm value for max reverse throttle
+THROTTLE_REVERSE_PWM = 200     #pwm value for max reverse throttle
 # 
 # 
 # #TRAINING
-# DEFAULT_MODEL_TYPE = 'linear' #(linear|categorical|rnn|imu|behavior|3d|localizer|latent)
-# BATCH_SIZE = 128
-# TRAIN_TEST_SPLIT = 0.8
-# MAX_EPOCHS = 100
-# SHOW_PLOT = True
-# VERBOSE_TRAIN = True
-# USE_EARLY_STOP = True
-# EARLY_STOP_PATIENCE = 5
-# MIN_DELTA = .0005
-# PRINT_MODEL_SUMMARY = True      #print layers and weights to stdout
+DEFAULT_MODEL_TYPE = 'linear' #(linear|categorical|rnn|imu|behavior|3d|localizer|latent)
+BATCH_SIZE = 128
+TRAIN_TEST_SPLIT = 0.8
+MAX_EPOCHS = 100
+SHOW_PLOT = True
+VERBOSE_TRAIN = True
+USE_EARLY_STOP = True
+EARLY_STOP_PATIENCE = 5
+MIN_DELTA = .0005
+PRINT_MODEL_SUMMARY = True      #print layers and weights to stdout
 # OPTIMIZER = None                #adam, sgd, rmsprop, etc.. None accepts default
 # LEARNING_RATE = 0.001           #only used when OPTIMIZER specified
 # LEARNING_RATE_DECAY = 0.0       #only used when OPTIMIZER specified
-# CACHE_IMAGES = True             #keep images in memory. will speed succesive epochs, but crater if not enough mem.
+CACHE_IMAGES = False             #keep images in memory. will speed succesive epochs, but crater if not enough mem.
 # PRUNE_CNN = False
 # PRUNE_PERCENT_TARGET = 75 # The desired percentage of pruning.
 # PRUNE_PERCENT_PER_ITERATION = 20 # Percenge of pruning that is perform per iteration.
@@ -93,8 +93,8 @@ THROTTLE_REVERSE_PWM = 320     #pwm value for max reverse throttle
 # AUTO_CREATE_NEW_TUB = False     #create a new tub (tub_YY_MM_DD) directory when recording or append records to data directory directly
 # 
 # #JOYSTICK
-#USE_JOYSTICK_AS_DEFAULT = True     #when starting the manage.py, when True, will not require a --js option to use the joystick
-# JOYSTICK_MAX_THROTTLE = 0.5         #this scalar is multiplied with the -1 to 1 throttle value to limit the maximum throttle. This can help if you drop the controller or just don't need the full speed available.
+USE_JOYSTICK_AS_DEFAULT = True     #when starting the manage.py, when True, will not require a --js option to use the joystick
+#JOYSTICK_MAX_THROTTLE = 0.5         #this scalar is multiplied with the -1 to 1 throttle value to limit the maximum throttle. This can help if you drop the controller or just don't need the full speed available.
 #JOYSTICK_STEERING_SCALE = 1.0       #some people want a steering that is less sensitve. This scalar is multiplied with the steering -1 to 1. It can be negative to reverse dir.
 # AUTO_RECORD_ON_THROTTLE = True      #if true, we will record whenever throttle is not zero. if false, you must manually toggle recording with some other trigger. Usually circle button on joystick.
 CONTROLLER_TYPE='F710'               #(ps3|ps4|xbox|nimbus|wiiu|F710|rc3|MM1|custom) custom will run the my_joystick.py controller written by the `donkey createjs` command
@@ -103,7 +103,7 @@ CONTROLLER_TYPE='F710'               #(ps3|ps4|xbox|nimbus|wiiu|F710|rc3|MM1|cus
 # JOYSTICK_DEADZONE = 0.0             # when non zero, this is the smallest throttle before recording triggered.
 # JOYSTICK_THROTTLE_DIR = -1.0        # use -1.0 to flip forward/backward, use 1.0 to use joystick's natural forward/backward
 # USE_FPV = False                     # send camera data to FPV webserver
-#JOYSTICK_DEVICE_FILE = "/dev/input/js0" # this is the unix file use to access the joystick.
+JOYSTICK_DEVICE_FILE = "/dev/input/js0" # this is the unix file use to access the joystick.
 # 
 # #WEB CONTROL
 #WEB_CONTROL_PORT = int(os.getenv("WEB_CONTROL_PORT", 8887))  # which port to listen on when making a web controller

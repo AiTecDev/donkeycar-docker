@@ -1,10 +1,12 @@
 version: '3.4'
 services:
     donkey:
+        #image: aitecmz/donkeycar_train-v02    
         image: aitecmz/donkeycar-v02
         build:
             context: .
-            dockerfile: Dockerfile
+            #dockerfile: Dockerfile
+            dockerfile: Dockerfile_train
             network: host
         privileged: true
         ipc: host
@@ -12,12 +14,17 @@ services:
         stdin_open: true
         devices:
             - /dev/video0:/dev/video0
+            - /dev/input/js0:/dev/input/js0
         tty: true
         volumes:
             - /tmp/.X11-unix:/tmp/.X11-unix:rw
             - /tmp/camsock:/tmp/camsock:rw
             - /tmp/argus_socket:/tmp/argus_socket:rw
             - /tmp/nvscsock:/tmp/nvscsock:rw
+            - /home/zamy/mycar:/home/zamy/mycar
         environment:
             TERM: xterm-256color
             DISPLAY: $DISPLAY
+            NVIDIA_DRIVER_CAPABILITIE NVIDIA_VISIBLE_DEVICES: all
+            NVIDIA_DRIVER_CAPABILITIES: compute,video,utility
+            LD_PRELOAD: /usr/lib/aarch64-linux-gnu/libgomp.so.1
