@@ -20,7 +20,7 @@ phases:
     - echo Build started on `date`
     - echo Building the Docker image...
     - docker build -t $REPOSITORY_URI:latest -f Dockerfile-DonkeyCarBaseImage .
-    - docker tag c-hello-world:latest aitecmz/donkeycarbaseimage 
+    - docker tag aitecmz/donkeycarbaseimage:latest aitecmz/donkeycarbaseimage 
   post_build:
     commands:
       - echo Build completed on `date`
