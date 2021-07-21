@@ -25,7 +25,7 @@ phases:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
-      - docker push docker push aitecmz/donkeycarbaseimage:latest
+      - docker push aitecmz/donkeycarbaseimage:latest
       - docker push aitecmz/donkeycarbaseimage:$IMAGE_TAG  
   
 
