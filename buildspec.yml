@@ -19,13 +19,13 @@ phases:
     commands:   
     - echo Build started on `date`
     - echo Building the Docker image...
-    - docker build -t aitecmz/donkeycarbaseimage:latest -f Dockerfile-DonkeyCarBaseImage .
-    - docker tag aitecmz/donkeycarbaseimage:latest aitecmz/donkeycarbaseimage:$IMAGE_TAG
+    - docker build -t aitecmz/dcbaseimage2:latest -f Dockerfile-DCBaseImage2 .
+    - docker tag aitecmz/dcbaseimage2:latest aitecmz/dcbaseimage2:$IMAGE_TAG
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
-      - docker push aitecmz/donkeycarbaseimage:latest
-      - docker push aitecmz/donkeycarbaseimage:$IMAGE_TAG  
+      - docker push aitecmz/dcbaseimage2:latest
+      - docker push aitecmz/dcbaseimage2:$IMAGE_TAG  
   
 

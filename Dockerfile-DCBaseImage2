@@ -1,4 +1,4 @@
-FROM aitecmz/donkeycarbaseimage:v02
+FROM aitecmz/donkeycarbaseimage
 
 # Install PyTorch v1.7 - torchvision v0.8.1
 RUN wget https://nvidia.box.com/shared/static/wa34qwrwtk9njtyarwt5nvo6imenfy26.whl -O /var/local/torch-1.7.0-cp36-cp36m-linux_aarch64.whl
