@@ -54,7 +54,7 @@ THROTTLE_REVERSE_PWM = 200     #pwm value for max reverse throttle
 # 
 # #TRAINING
 DEFAULT_MODEL_TYPE = 'linear' #(linear|categorical|rnn|imu|behavior|3d|localizer|latent)
-BATCH_SIZE = 128
+BATCH_SIZE = 20
 TRAIN_TEST_SPLIT = 0.8
 MAX_EPOCHS = 100
 SHOW_PLOT = True
