@@ -1,8 +1,7 @@
 version: '3.4'
 services:
-    donkey:
-        #image: aitecmz/donkeycar_train-v02    
-        image: aitecmz/donkeycar-v02
+    donkey:         
+        image: aitecmz/donkeycar
         build:
             context: .
             #dockerfile: Dockerfile
