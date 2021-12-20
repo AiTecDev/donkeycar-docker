@@ -1,19 +1,13 @@
-FROM aitecmz/donkeycarbaseimage-v01 
+FROM aitecmz/donkeycarbaseimage 
 
 # Install DonkeyCar software
 #RUN mkdir /var/local/projects
-COPY ./donkeycar /var/local/projects/donkeycar
-RUN cd /var/local/projects/donkeycar && \
-       git checkout master \
-       && pip install -e .[nano]
+RUN git clone https://github.com/autorope/donkeycar && cd donkeycar && git checkout dev && pip install -e .[nano]
+RUN donkey createcar --path /var/local/projects/donkycar
+RUN git clone https://github.com/AiTecDev/donkeycar-docker.git && cd donkeycar-docker/mycar && cp myconfig.py /var/local/projects/donkycar
 
-RUN export DISPLAY=:0
+ENV DISPLAY :0
 
 WORKDIR /var/local/projects/donkycar
+CMD ["python3", "/var/local/projects/donkycar/manage.py", "drive"]
 
-#joystick need NOT to be sticky and in "myconfig.py" the variable USE_JOYSTICK_AS_DEFAULT set to False
-#or it is commented out 
-#CMD ["python3", "/home/zamy/mycar/manage.py", "drive", "--js"]
-
-#joystick need to be sticky and in "myconfig.py" the variable USE_JOYSTICK_AS_DEFAULT set to True
-CMD ["python3", "/home/zamy/mycar/manage.py", "drive"]
