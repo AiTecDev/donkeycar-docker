@@ -1,12 +1,10 @@
 version: '3.4'
 services:
-    donkey:
-        #image: aitecmz/donkeycar_train-v02    
-        image: aitecmz/donkeycar-v02
+    donkey:      
+        image: aitecmz/donkeycar
         build:
             context: .
-            #dockerfile: Dockerfile
-            dockerfile: Dockerfile_train
+            dockerfile: Dockerfile
             network: host
         privileged: true
         ipc: host
@@ -21,7 +19,8 @@ services:
             - /tmp/camsock:/tmp/camsock:rw
             - /tmp/argus_socket:/tmp/argus_socket:rw
             - /tmp/nvscsock:/tmp/nvscsock:rw
-            - /home/zamy/mycar:/home/zamy/mycar
+            - /sys:/sys
+            - /var/local/projects/donkeycar:/:var/local/projects/donkeycar
         environment:
             TERM: xterm-256color
             DISPLAY: $DISPLAY
