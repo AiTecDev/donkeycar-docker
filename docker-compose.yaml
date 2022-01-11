@@ -1,11 +1,12 @@
 version: '3.4'
 services:
-    donkey:      
+    jetson:
         image: aitecmz/donkeycar
         build:
             context: .
             dockerfile: Dockerfile
             network: host
+        container_name: jetson
         privileged: true
         ipc: host
         network_mode: "host"
@@ -15,12 +16,16 @@ services:
             - /dev/input/js0:/dev/input/js0
         tty: true
         volumes:
+            - $HOME:/home/jetson:rw
+            - /etc/ld.so.conf.d:/etc/ld.so.conf.d:ro
+            - /etc/alternatives:/etc/alternatives:ro
+            - /usr/local/cuda-10.0:/usr/local/cuda-10.0:ro
+            - /usr/lib/aarch64-linux-gnu:/usr/lib/aarch64-linux-gnu
+            - /usr/share/glvnd/egl_vendor.d:/usr/share/glvnd/egl_vendor.d
             - /tmp/.X11-unix:/tmp/.X11-unix:rw
             - /tmp/camsock:/tmp/camsock:rw
             - /tmp/argus_socket:/tmp/argus_socket:rw
             - /tmp/nvscsock:/tmp/nvscsock:rw
-            - /sys:/sys
-            - /var/local/projects/donkeycar:/:var/local/projects/donkeycar
         environment:
             TERM: xterm-256color
             DISPLAY: $DISPLAY
