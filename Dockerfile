@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM arm64v8/ubuntu
 
 # setup environment
 ENV DEBIAN_FRONTEND noninteractive
@@ -18,9 +18,24 @@ RUN apt-get install -y python3-dev python3-pip libxslt-dev libxml2-dev libffi-de
                     libsdl-ttf2.0-dev libhdf5-dev libsdl1.2-dev libsmpeg-dev python-numpy subversion \
                     libportmidi-dev ffmpeg libswscale-dev libavformat-dev libavcodec-dev libfreetype6-dev
 
+# Install python3.8
+RUN apt-get install -y python3.8 \
+            && update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 1 \
+            && update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.8 2 \
+            && sudo update-alternatives --config python3 < 0
+
+
+# Install Python Packages
+RUN pip3 install --upgrade setuptools wheel pip  testresources
+RUN pip3 install --upgrade numpy
+RUN pip3 install -U futures==3.1.1 protobuf==3.12.2 pybind11==2.5.0
+RUN pip3 install -U cython==0.29.21 pyserial
+RUN pip3 install -U future==0.18.2 mock==4.0.2 h5py=2.7.1 keras_preprocessing==1.1.2 keras_applications==1.0.8 gast==0.3.3
+RUN pip3 install -U absl-py==0.9.0 py-cpuinfo==7.0.0 psutil==5.7.2 portpicker==1.3.1 six requests==2.24.0 astor==0.8.1 termcolor==1.1.0 wrapt==1.12.1 google-pasta==0.2.0
+RUN pip3 install -U gdown
+
+
 ## Install Tensorflow
-COPY requirements.txt /
-RUN pip3 install -r ./requirements.txt
 RUN pip3 install --pre --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v44 tensorflow
 
 ## Install Torch Torchvivion, Opencv & imgaug
