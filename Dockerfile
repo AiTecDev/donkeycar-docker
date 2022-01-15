@@ -25,6 +25,7 @@ RUN cd /opt/donkeycar \
 
 RUN echo "export LD_PRELOAD=/usr/lib/aarch64-linux-gnu/libgomp.so.1" >> ~/.bashrc
 RUN apt-get install -y sudo vim nano htop
+RUN pip3 install --upgrade pip && pip3 install scikit-build opencv-python
 COPY entrypoint.sh /
 
 # setup docker user
