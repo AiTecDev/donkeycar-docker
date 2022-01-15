@@ -30,6 +30,6 @@ COPY entrypoint.sh /
 # setup docker user
 ARG home=/home/jetson
 WORKDIR ${home}
-
+ENV DISPLAY :0
 ENTRYPOINT [ "/entrypoint.sh" ]
 CMD [ "/bin/bash" ]
