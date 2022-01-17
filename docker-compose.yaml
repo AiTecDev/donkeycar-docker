@@ -15,6 +15,7 @@ services:
             - /dev/video0:/dev/video0
             - /dev/input/js0:/dev/input/js0
             - /dev:/dev
+            - /var/swapfile:/var/swapfile
         tty: true
         volumes:
             - $HOME:/home/jetson:rw
