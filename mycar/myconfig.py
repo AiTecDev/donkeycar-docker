@@ -53,9 +53,8 @@ THROTTLE_REVERSE_PWM = 200     #pwm value for max reverse throttle
 # 
 # 
 # #TRAINING
-DEFAULT_MODEL_TYPE = 'resnet18' #(linear|categorical|rnn|imu|behavior|3d|localizer|latent)
-DEFAULT_AI_FRAMEWORK = 'pytorch'
-BATCH_SIZE = 128
+DEFAULT_MODEL_TYPE = 'linear' #(linear|categorical|rnn|imu|behavior|3d|localizer|latent)
+BATCH_SIZE = 25
 TRAIN_TEST_SPLIT = 0.8
 MAX_EPOCHS = 100
 SHOW_PLOT = True
@@ -108,7 +107,7 @@ JOYSTICK_DEVICE_FILE = "/dev/input/js0" # this is the unix file use to access th
 # 
 # #WEB CONTROL
 #WEB_CONTROL_PORT = int(os.getenv("WEB_CONTROL_PORT", 8887))  # which port to listen on when making a web controller
-WEB_INIT_MODE = "user"              # which control mode to start in. one of user|local_angle|local. Setting local will start in ai mode.
+# WEB_INIT_MODE = "user"              # which control mode to start in. one of user|local_angle|local. Setting local will start in ai mode.
 # 
 # 
 # #DonkeyGym
@@ -127,4 +126,3 @@ WEB_INIT_MODE = "user"              # which control mode to start in. one of use
 # 
 # SIM_HOST = "127.0.0.1"              # when racing on virtual-race-league use host "trainmydonkey.com"
 # SIM_ARTIFICIAL_LATENCY = 0          # this is the millisecond latency in controls. Can use useful in emulating the delay when useing a remote server. values of 100 to 400 probably reasonable.
-

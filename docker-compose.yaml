@@ -1,12 +1,12 @@
-version: '3.4'
+version: '4.4'
 services:
-    donkey:         
-        image: aitecmz/donkeycar
+    jetson:
+        image: aitecmz/donkeydocker
         build:
             context: .
-            #dockerfile: Dockerfile
-            dockerfile: Dockerfile_train
+            dockerfile: Dockerfile
             network: host
+        container_name: jetson
         privileged: true
         ipc: host
         network_mode: "host"
@@ -14,16 +14,31 @@ services:
         devices:
             - /dev/video0:/dev/video0
             - /dev/input/js0:/dev/input/js0
+            - /dev:/dev
+            - /var/swapfile:/var/swapfile
         tty: true
         volumes:
+            - $HOME:/home/jetson:rw
+            - /etc/ld.so.conf.d:/etc/ld.so.conf.d:ro
+            - /etc/alternatives:/etc/alternatives:rw
+            - /usr/local/cuda-10.2:/usr/local/cuda-10.0:ro
+            - /usr/lib/aarch64-linux-gnu/:/usr/lib/aarch64-linux-gnu:rw
+            - /usr/share/glvnd/egl_vendor.d/10_nvidia.json:/usr/share/glvnd/egl_vendor.d/10_nvidia.json:ro
+            # X11 & Cam
             - /tmp/.X11-unix:/tmp/.X11-unix:rw
             - /tmp/camsock:/tmp/camsock:rw
             - /tmp/argus_socket:/tmp/argus_socket:rw
             - /tmp/nvscsock:/tmp/nvscsock:rw
-            - /home/zamy/mycar:/home/zamy/mycar
+            - /sys:/sys:rw
+            # - $XAUTHORITY:$XAUTHORITY
+            - /run/user/1000/:/run/user/1000/:rw
+            # dbus
+            - /run/user/1000/bus:/run/user/1000/bus:rw
+            - /run/dbus/system_bus_socket:/run/dbus/system_bus_socket:rw
         environment:
             TERM: xterm-256color
-            DISPLAY: $DISPLAY
+            DISPLAY: :1
             NVIDIA_DRIVER_CAPABILITIE NVIDIA_VISIBLE_DEVICES: all
             NVIDIA_DRIVER_CAPABILITIES: compute,video,utility
             LD_PRELOAD: /usr/lib/aarch64-linux-gnu/libgomp.so.1
+            DBUS_SESSION_BUS_ADDRESS: "unix:path=/run/user/1000/bus"
