@@ -12,7 +12,7 @@ RUN git clone https://github.com/autorope/donkeycar /opt/donkeycar
 RUN cd /opt/donkeycar \
         && git checkout master \
         && pip3 install -e .[nano] 
-RUN pip3 install --upgrade pip setuptools wheel &&  pip3 install Shapely==1.5.9 scikit-image==0.16.2  \
+RUN pip3 install --upgrade pip setuptools wheel &&  pip3 install Shapely==1.5.9 scikit-image==0.16.2 imageio PyWavelets \
     && pip3 install --no-deps imgaug \ 
     && echo "export LD_PRELOAD=/usr/lib/aarch64-linux-gnu/libgomp.so.1" >> ~/.bashrc
 
