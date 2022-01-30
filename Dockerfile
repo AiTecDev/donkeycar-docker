@@ -6,7 +6,7 @@ ENV QEMU_EXECVE 1
 USER root
 
 ## Preparation (based on JetPack44 Nvidea Image)
-RUN apt-get update -y && apt-get upgrade -y && apt-get install -y sudo wget locate vim nano htop nmap ffmpg
+RUN apt-get update -y && apt-get upgrade -y && apt-get install -y sudo wget locate vim nano htop nmap ffmpeg
 ## Install donkey car
 RUN git clone https://github.com/autorope/donkeycar /opt/donkeycar
 RUN cd /opt/donkeycar \
