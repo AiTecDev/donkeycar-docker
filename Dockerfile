@@ -18,6 +18,13 @@ RUN pip3 install --upgrade pip setuptools wheel &&  pip3 install Shapely==1.5.9 
     && echo "export LD_PRELOAD=/usr/lib/aarch64-linux-gnu/libgomp.so.1" >> ~/.bashrc
 
 RUN pip3 install https://developer.download.nvidia.com/compute/redist/jp/v45/tensorflow/tensorflow-2.3.1+nv20.12-cp36-cp36m-linux_aarch64.whl
+# sudo -H pip3 install --pre --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v44 tensorflow==2.2.0+nv20.6
+RUN apt-get install -y libopenblas-base libopenmpi-dev && \
+    wget https://nvidia.box.com/shared/static/wa34qwrwtk9njtyarwt5nvo6imenfy26.whl -O torch-1.7.0-cp36-cp36m-linux_aarch64.whl &&  \
+    pip3 install ./torch-1.7.0-cp36-cp36m-linux_aarch64.whl && \
+    apt-get install -y libjpeg-dev zlib1g-dev libpython3-dev libavcodec-dev libswscale-dev
+
+
 COPY entrypoint.sh /
 
 # setup docker user
