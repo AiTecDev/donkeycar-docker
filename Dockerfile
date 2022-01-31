@@ -5,7 +5,7 @@ ENV QEMU_EXECVE 1
 
 USER root
 
-## Preparation (based on JetPack44 Nvidea Image)
+## Preparation (based on JetPack45 Nvidea Image)
 RUN apt-get update -y && apt-get upgrade -y && apt-get install -y sudo wget locate vim nano htop nmap ffmpeg
 ## Install donkey car
 RUN git clone https://github.com/autorope/donkeycar /opt/donkeycar
@@ -17,6 +17,7 @@ RUN pip3 install --upgrade pip setuptools wheel &&  pip3 install Shapely==1.5.9 
     && pip3 install git+https://github.com/autorope/keras-vis.git \
     && echo "export LD_PRELOAD=/usr/lib/aarch64-linux-gnu/libgomp.so.1" >> ~/.bashrc
 
+RUN pip3 install https://developer.download.nvidia.com/compute/redist/jp/v45/tensorflow/tensorflow-2.3.1+nv20.12-cp36-cp36m-linux_aarch64.whl
 COPY entrypoint.sh /
 
 # setup docker user
